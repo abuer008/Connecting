@@ -28,7 +28,7 @@ fileprivate let characterAnimationKey = "character Animation"
 class PrototypeState: GKState {
     unowned var characterNode: SKNode
     
-    var currentState:AnimationState = .idle
+    var currentState:AnimationState = .pending
     
     var oldFacing:Bool { return UserDefaults.standard.bool(forKey: "OldFacing") }
     

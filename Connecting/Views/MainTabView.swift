@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import SpriteKit
 
 struct MainTabView: View {
     
     /// properties for `uiState changing`
     @ObservedObject var uiState:UIState = UIState()
+    @ObservedObject var characterSettings:CharacterSettings = CharacterSettings()
     /// properties for `TabView`
     @State private var showFamilyView:Bool = true
     @State private var showSettingView:Bool = false
@@ -23,9 +25,17 @@ struct MainTabView: View {
     
     @ViewBuilder
     var body: some View {
-        mainCard
+        if characterSettings.characterSettings != [] {
+            mainCard
+        } else {
+            pairView
+        }
     }
-    
+
+    var pairView: some View {
+        SpriteView(scene: PrototypeScene(), options: .allowsTransparency)
+        .edgesIgnoringSafeArea(.all)
+    }
     
     var mainCard: some View {
         ZStack {

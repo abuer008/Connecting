@@ -41,7 +41,7 @@ class PrototypeScene:SKScene {
             PrototypeTouchState(characterNode: characterNode!)
         ])
 
-        stateMachine.enter(PrototypeIdleState.self)
+        stateMachine.enter(PrototypePendingState.self)
     }
     
     override func didMove(to view: SKView) {
