@@ -27,9 +27,24 @@ class CharacterSettings: ObservableObject {
     }
     
     func addCharacter() {
-        let newCharacter = Character(name: "Leandro", stateName: [.Idle: "I'm calm, blar blar blar...", .Active: "Working right now", .Sleepy: "em, em, em"], scene: PrototypeScene(), characterState: .Idle, colorSet: .blue, voiceStorage: [VoiceModel(isSource: true, voiceClip: 1, timeStample: Date(), voiceDuration: 12.0)])
+        let newCharacter = Character(name: "Leandro", stateName: [.Idle: "I'm calm, blar blar blar...", .Active: "Working right now", .Sleepy: "em, em, em"], scene: PrototypeScene(), characterState: .Idle, colorSet: .blue, voiceStorage: [VoiceModel(isSource: true, voiceClip: 1, timeStample: Date(), voiceDuration: 12.0)], show: false)
         
         self.characterSettings.append(newCharacter)
+        print("now characterArray has \(self.characterSettings.count) characters")
+    }
+
+    func deleteCharacter(id:UUID) {
+        print("Button tapped")
+        for character in characterSettings {
+            if character.id == id {
+                print("matched character")
+                guard let deletingIndex = characterSettings.firstIndex(of: character) else {
+                    print("\(#function): no matched index.")
+                    return
+                }
+                characterSettings.remove(at: deletingIndex)
+            }
+        }
     }
 }
 

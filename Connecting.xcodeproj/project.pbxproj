@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1633BA80CFAE02F9DF98933F /* SharedConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1633BC6EAD566D903F47CA34 /* SharedConnectivity.swift */; };
+		1633BE3DE9239C4304DB11D0 /* DeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1633B1A6DC7A9966DBD33A20 /* DeleteView.swift */; };
 		38047B8A252F347B0011626A /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38047B89252F347B0011626A /* StatisticView.swift */; };
 		38047B92252F5A3F0011626A /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38047B91252F5A3F0011626A /* TitleView.swift */; };
 		38047B97252F5C4E0011626A /* GlobalStatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38047B96252F5C4E0011626A /* GlobalStatisticView.swift */; };
@@ -136,6 +137,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1633B1A6DC7A9966DBD33A20 /* DeleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteView.swift; sourceTree = "<group>"; };
 		1633BC6EAD566D903F47CA34 /* SharedConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedConnectivity.swift; sourceTree = "<group>"; };
 		38047B89252F347B0011626A /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		38047B91252F5A3F0011626A /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 				38CDCFF1251292C700AFF761 /* CharacterCardView.swift */,
 				38CDCFFE2513BB5200AFF761 /* CharacterDetailView.swift */,
 				388D8B1E251783D100B4FE6D /* CharacterStackView.swift */,
+				1633B1A6DC7A9966DBD33A20 /* DeleteView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				38A0FF262528EF5F007A27D4 /* ResourceLoading.swift in Sources */,
 				1633BA80CFAE02F9DF98933F /* SharedConnectivity.swift in Sources */,
 				38FD314C2532C4DF00A53CDC /* PrototypeStatisticState.swift in Sources */,
+				1633BE3DE9239C4304DB11D0 /* DeleteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

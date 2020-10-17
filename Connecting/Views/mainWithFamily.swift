@@ -20,12 +20,13 @@ struct mainWithFamily: View {
     /// properties for `CharacterCardView`
     @State var characters: [Character] = mockCharacters
     @State var isSingleCardBeenActived = true
-    @State var activeIndex = -1
+    @State var deleteId = UUID()
     var index:Int = 0
     @State var showDetail:Bool = false
     @State var radius:CGFloat = 40.0
     @State var scaleParm:CGFloat = 1.0
     @State var isListState:Bool = true
+    @State private var deletingCharacter:Bool = false
 
     // selectCharacter is for stack mode of characters, shown the prime logo
     @State var selectCharacter:Character = mockCharacters[0]
@@ -89,13 +90,15 @@ struct mainWithFamily: View {
             
             CharacterCardView(
                 isSingleCardBeenActived: $isSingleCardBeenActived,
+                    deleteId: $deleteId,
                 //                    activeIndex: $activeIndex,
                 //                    radius: $radius,
                 //                    index: index,
                 showDetail: $showDetail,
                 //                    scaleParm: $scaleParm,
                 isListState: $isListState,
-                character: $uiState.activeCharacter)
+                character: characterSet.characterSettings.first!,
+                    deletingCharacter: $deletingCharacter)
             
             
             HStack {
@@ -160,7 +163,7 @@ struct mainWithFamily: View {
             VisualEffectBlur(blurStyle: .systemUltraThinMaterial)
                 .opacity(isStacked ? 0 : 1)
             
-            CharacterStackView(isStacked: $isStacked, selectCharacter: $selectCharacter, uiState: uiState)
+            CharacterStackView(isStacked: $isStacked, selectCharacter: $characterSet.characterSettings[0], uiState: uiState)
                 .blur(radius: showDetail ? 30 : 0)
                 .offset(y: showDetail ? 150 : 0)
                 .offset(y: dragData.height)

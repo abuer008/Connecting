@@ -32,6 +32,9 @@ struct MainTabView: View {
 
     func pairButtonAction() {
 //        uiState.pairStateButton()
+        withAnimation(.spring()) {
+            characterSettings.addCharacter()
+        }
     }
 
     @ViewBuilder
@@ -61,10 +64,11 @@ struct MainTabView: View {
                         .onTapGesture {
                             uiState.pairStateButton(requestedState: .pending)
                         }
-                Text("near by an other device")
+                Text("Please near by an other device")
                         .multilineTextAlignment(.leading)
                         .frame(width: 120)
             }
+                    .opacity(isPair || isConnect ? 0 : 1)
                     .offset(y: -150)
                     .foregroundColor(.white)
 
