@@ -36,24 +36,39 @@ class CharacterSettings: ObservableObject {
 class UIState: ObservableObject {
     @Published var activeCharacter:Character = mockCharacters[0]
     @Published var animationState:AnimationState = .pending
-    @Published var testString:String = "not passing"
+    @Published var isPair:Bool = false
+    @Published var isConnect:Bool = false
 
     func newActiveCharacter(_ character:Character) {
         self.activeCharacter = character
         print("activeCharacter changed...")
     }
 
-    func pairStateButton() {
-        // state changes:
-        // - pending, the standard blicking
-        // - pair, the searching anima
-        // - success, finish searching, play success anima
+    func pairStateButton(requestedState:AnimationState) {
+        switch requestedState {
+        case .pair:
+            isPair = true
+            isConnect = false
+        case .success:
+            isPair = true
+            isConnect = true
+        case .pending:
+            isPair = false
+            isConnect = false
+        default:
+            isPair = false
+            isConnect = true
+        }
+
+        UserDefaults.standard.setValue(isPair, forKey: "IsPair")
+        UserDefaults.standard.setValue(isConnect, forKey: "IsConnect")
+    }
+
+    func resetPairState() {
+        self.isPair = false
+        self.isConnect = true
         self.animationState = .idle
-        let isPair:Bool = self.animationState == .pair ? true : false
-
-        UserDefaults.standard.setValue(isPair, forKey: "IsIdle")
-
-        self.testString = "Passing through"
-        print("\(self.animationState.rawValue)")
+        UserDefaults.standard.setValue(isPair, forKey: "IsPair")
+        UserDefaults.standard.setValue(isConnect, forKey: "IsConnect")
     }
 }

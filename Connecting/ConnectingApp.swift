@@ -20,6 +20,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         #endif
         Bundle(path:injectionBundlePath)?.load()
         #endif
+
+        #if DEBUG
+        UserDefaults.standard.setValue(false, forKey: "IsPair")
+        UserDefaults.standard.setValue(false, forKey: "IsConnect")
+        #endif
         return true
     }
 }

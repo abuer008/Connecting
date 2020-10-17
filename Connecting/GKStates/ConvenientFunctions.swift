@@ -11,10 +11,22 @@ import GameplayKit
 extension PrototypeState {
     
     func switchingStates() {
-//        currentState = Bool.random() ? .idle : .pending
-//        currentState = .pending
-    // debugging
-        
+        let isPair = UserDefaults.standard.bool(forKey: "IsPair")
+        let isConnect = UserDefaults.standard.bool(forKey: "IsConnect")
+
+        if isPair && !isConnect {
+            currentState = .pair
+        } else if isPair && isConnect {
+            currentState = .success
+        } else if !isPair && !isConnect {
+            currentState = .pending
+        } else {
+            currentState = switchAutoState()
+        }
+    }
+
+    func switchAutoState() -> AnimationState {
+        return .idle
     }
 
     func combineTextures(arrayTextures textures: [[SKTexture]]) -> [SKTexture] {
@@ -66,7 +78,7 @@ extension PrototypeState {
         
         switch state {
         case .pending: // only have 1 clip
-            stateIdentifier = "Idle"
+            stateIdentifier = "Pending"
             requestedTexturesArray = fetchTexturesFromAtlas(stateIdentifier, index: 1)
             
         case .pair: // have 2 optional clips
@@ -78,12 +90,12 @@ extension PrototypeState {
             requestedTexturesArray = fetchTexturesFromAtlas(stateIdentifier, index: 1)
             
         case .statistic: // have 1 ~ 2 clips
-            stateIdentifier = "Statistic"
+            stateIdentifier = "Pair"
             requestedTexturesArray = fetchTexturesFromAtlas(stateIdentifier, index: 2)
             
         default: // touch state have 3 clips
             stateIdentifier = "Touch"
-            requestedTexturesArray = fetchTexturesFromAtlas(stateIdentifier, index: 1)
+            requestedTexturesArray = fetchTexturesFromAtlas(stateIdentifier, index: 3)
             
         }
         

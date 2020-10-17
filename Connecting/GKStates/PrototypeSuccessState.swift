@@ -17,41 +17,14 @@ class PrototypeSuccessState: PrototypeState {
         
             print("enter ... \(currentState.rawValue)")
         runInteractionState(state: .success, node: characterNode)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.stateMachine?.enter(PrototypeIdleState.self)
+            UserDefaults.standard.setValue(false, forKey: "IsPair")
+            UserDefaults.standard.setValue(true, forKey: "IsConnect")
+        }
     }
     
     override func update(deltaTime seconds: TimeInterval) {
-        
-        let delta = seconds - elapsedTime
-        
-        if delta < animaLength { return }
-        
-        /// switching states
-        
-        switchingStates()
-        
-        if currentState != .success {
-            switch currentState {
-            case .idle:
-                stateMachine?.enter(PrototypeIdleState.self)
-            case .active:
-                stateMachine?.enter(PrototypeActiveState.self)
-            case .pair:
-                stateMachine?.enter(PrototypePairState.self)
-            case .sleepy:
-                stateMachine?.enter(PrototypeSleepyState.self)
-            case .statistic:
-                stateMachine?.enter(PrototypeStatisticState.self)
-            case .pending:
-                stateMachine?.enter(PrototypePendingState.self)
-            default:
-                stateMachine?.enter(PrototypeTouchState.self)
-            }
-        }
-        
-        DispatchQueue.main.async {
-            self.runInteractionState(state: .success, node: self.characterNode)
-        }
-        
-        elapsedTime = seconds
+
     }
 }

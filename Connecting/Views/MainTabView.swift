@@ -9,7 +9,7 @@ import SwiftUI
 import SpriteKit
 
 struct MainTabView: View {
-
+    @Namespace private var initialise
     /// properties for `uiState changing`
     @ObservedObject var uiState: UIState = UIState()
     @ObservedObject var characterSettings: CharacterSettings = CharacterSettings()
@@ -17,10 +17,21 @@ struct MainTabView: View {
     @State private var showFamilyView: Bool = true
     @State private var showSettingView: Bool = false
 
+    /// Properties for PairView
+    ///
+    /// state changes:
+    /// - isPair false, isConnect false = .pending
+    /// - isPair true, isConnect false = .pair
+    /// - isPair true, isConnect true = .success
+    /// - isPair false, isConnect true = .idle
+
+    @State private var isPair: Bool = false
+    @State private var isConnect: Bool = false
+
     // functions
 
     func pairButtonAction() {
-        uiState.pairStateButton()
+//        uiState.pairStateButton()
     }
 
     @ViewBuilder
@@ -37,6 +48,7 @@ struct MainTabView: View {
 
     var pairView: some View {
         ZStack {
+
             SpriteView(scene: PrototypeScene(), options: .allowsTransparency)
                     .offset(y: -115)
                     .scaleEffect(0.5)
@@ -44,10 +56,14 @@ struct MainTabView: View {
 
             HStack {
                 Image(systemName: "applewatch.radiowaves.left.and.right")
-                .font(.system(size: 45, weight: .thin, design: .default))
+                        .font(.system(size: 45, weight: .thin, design: .default))
+                        // debugging
+                        .onTapGesture {
+                            uiState.pairStateButton(requestedState: .pending)
+                        }
                 Text("near by an other device")
-                .multilineTextAlignment(.leading)
-                .frame(width: 120)
+                        .multilineTextAlignment(.leading)
+                        .frame(width: 120)
             }
                     .offset(y: -150)
                     .foregroundColor(.white)
@@ -55,20 +71,55 @@ struct MainTabView: View {
             VStack {
                 Spacer()
                 ZStack {
-                    RoundedRectangle(cornerRadius: 30, style: .continuous)
-                            .frame(height: 400)
-                            .foregroundColor(.white)
+                    if !isPair && isConnect {
+                        GeometryReader { bounds in
+                            RoundedRectangle(cornerRadius: 30, style: .continuous)
+                                    .matchedGeometryEffect(id: "ForeGround", in: initialise, isSource: !isPair && isConnect)
+                                    .foregroundColor(.white)
+                                    .offset(y: bounds.frame(in: .global).height)
+                        }
+                    } else {
+                        RoundedRectangle(cornerRadius: 30, style: .continuous)
+                                .matchedGeometryEffect(id: "ForeGround", in: initialise)
+                                .frame(height: 400)
+                                .foregroundColor(.white)
+                    }
 
-                    Text("Pairing a family connection")
-                            .font(.title)
-                            .bold()
-                            .multilineTextAlignment(.center)
-                            .frame(width: 300)
-                            .padding(.bottom, 240)
-                            .onTapGesture {
-                                uiState.pairStateButton()
-                                characterSettings.addCharacter()
-                            }
+                    if isPair {
+                        Text("Seaching...")
+                                .font(.title)
+                                .bold()
+                                .foregroundColor(.secondary)
+                                .matchedGeometryEffect(id: "TextButton", in: initialise)
+                                .padding(.bottom, 200)
+
+                    } else if isConnect {
+
+                    } else {
+                        Text("Pairing a family connection")
+                                .font(.title)
+                                .bold()
+                                .multilineTextAlignment(.center)
+                                .matchedGeometryEffect(id: "TextButton", in: initialise)
+                                .frame(width: 300)
+                                .padding(.bottom, 200)
+                                .transition(.opacity)
+                                .onTapGesture {
+                                    uiState.pairStateButton(requestedState: .pair)
+                                    withAnimation(.easeInOut(duration: 0.5)) {
+                                        self.isPair = true
+                                        self.isConnect = false
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                                        uiState.pairStateButton(requestedState: .success)
+                                        withAnimation(.easeInOut(duration: 0.5)) {
+                                            self.isPair = false
+                                            self.isConnect = true
+                                            self.characterSettings.addCharacter()
+                                        }
+                                    }
+                                }
+                    }
                 }
             }
         }
