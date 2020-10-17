@@ -12,7 +12,7 @@ struct MainTabView: View {
     @Namespace private var initialise
     /// properties for `uiState changing`
     @ObservedObject var uiState: UIState = UIState()
-    @ObservedObject var characterSettings: CharacterSettings = CharacterSettings()
+    @EnvironmentObject var characterSettings: CharacterSettings
     /// properties for `TabView`
     @State private var showFamilyView: Bool = true
     @State private var showSettingView: Bool = false

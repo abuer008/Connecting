@@ -17,8 +17,6 @@ struct mainWithFamily: View {
     
     @EnvironmentObject var characterSet:CharacterSettings
     
-    /// properties for `switching pending mode`
-    
     /// properties for `CharacterCardView`
     @State var characters: [Character] = mockCharacters
     @State var isSingleCardBeenActived = true
@@ -28,6 +26,8 @@ struct mainWithFamily: View {
     @State var radius:CGFloat = 40.0
     @State var scaleParm:CGFloat = 1.0
     @State var isListState:Bool = true
+
+    // selectCharacter is for stack mode of characters, shown the prime logo
     @State var selectCharacter:Character = mockCharacters[0]
     
     // debug healthdata
@@ -50,7 +50,9 @@ struct mainWithFamily: View {
     @ViewBuilder
     
     var body: some View {
-        content
+        if characterSet.characterSettings != [] {
+            content
+        }
     }
     
     var content: some View {
