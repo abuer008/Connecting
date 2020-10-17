@@ -44,7 +44,15 @@ class UIState: ObservableObject {
     }
 
     func pairStateButton() {
+        // state changes:
+        // - pending, the standard blicking
+        // - pair, the searching anima
+        // - success, finish searching, play success anima
         self.animationState = .idle
+        let isPair:Bool = self.animationState == .pair ? true : false
+
+        UserDefaults.standard.setValue(isPair, forKey: "IsIdle")
+
         self.testString = "Passing through"
         print("\(self.animationState.rawValue)")
     }

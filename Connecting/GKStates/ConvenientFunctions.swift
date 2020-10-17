@@ -13,14 +13,10 @@ extension PrototypeState {
     func switchingStates() {
 //        currentState = Bool.random() ? .idle : .pending
 //        currentState = .pending
-    var isPending = UserDefaults.standard.bool(forKey: "phonePending")
-        var isConnecting = UserDefaults.standard.bool(forKey: "phoneConnected")
-
-        if isPending && !isConnecting {
-            currentState = .pending
-        }
+    // debugging
+        
     }
-    
+
     func combineTextures(arrayTextures textures: [[SKTexture]]) -> [SKTexture] {
         
         var newCombineTextures: [SKTexture] = []
