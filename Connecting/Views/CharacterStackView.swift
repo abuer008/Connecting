@@ -49,7 +49,7 @@ struct CharacterStackView: View {
               ZStack {
                 StackedSingleView(uiState: uiState, deleteId: $deleteId, isStacked: $isStacked, character: character, deletingCharacter: $deletingCharacter)
                     .rotation3DEffect(
-                        .degrees(isStacked ? Double(bounds.frame(in: .global).height  + 7) : 0),
+                        .degrees(isStacked ? (Double(i * -5)  + 7) : 0),
                         axis: (x: 90.0, y: 90.0, z: 270.0),
                         anchor: .center,
                         anchorZ: 0.0,
@@ -95,6 +95,8 @@ struct CharacterStackView_Previews: PreviewProvider {
 struct StackedSingleView: View {
     /// properties for `CharacterCardView`
     @ObservedObject var uiState:UIState
+  @StateObject var characterSet:CharacterSettings = CharacterSettings()
+  
     @Binding var deleteId:UUID
     @Binding var isStacked:Bool
     var character:Character

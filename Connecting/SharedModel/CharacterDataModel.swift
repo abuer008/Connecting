@@ -24,7 +24,7 @@ enum ColorSet: Hashable {
 
 // MARK: Character Data Model
 
-struct Character: Identifiable, Hashable {
+struct Character:Identifiable, Hashable {
 //    static func == (lhs: Character, rhs: Character) -> Bool {
 //        return lhs.id == rhs.id
 //    }

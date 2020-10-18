@@ -19,7 +19,7 @@ struct CharacterCardView: View {
   /// global properties
   
   @StateObject var uiState = UIState()
-  @StateObject var characterSet: CharacterSettings = CharacterSettings()
+//  @StateObject var characterSet: CharacterSettings = CharacterSettings()
   
   /// ist single card been actived, only return `true` when it's able into `CharacterDetailView`
   @Binding var isSingleCardBeenActived: Bool
@@ -57,7 +57,7 @@ struct CharacterCardView: View {
   @State private var selectedDeletingCharacter: Bool = false
   @Binding var deletingCharacter: Bool
 //    @State private var characters:[Character] = mockCharacters
-  
+  @EnvironmentObject var characterSet: CharacterSettings
   // detail view can only showing when both return true
   var showDetailView: Bool {
     if isSingleCardBeenActived && showDetail {
@@ -134,8 +134,8 @@ struct CharacterCardView: View {
 //                selectedDeletingCharacter.toggle()
                 // public binding change for external view change
 //                deletingCharacter.toggle()
-                  selectedDeletingCharacter.toggle()
-                  deletingCharacter.toggle()
+                selectedDeletingCharacter.toggle()
+                deletingCharacter.toggle()
               }
             }, label: {
               ZStack {
@@ -210,9 +210,13 @@ struct CharacterCardView: View {
                     .frame(width: 120, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .offset(x: showDetailView ? 50 : 0, y: showDetailView ? 50 : -50)
           }
-  
+          
           if selectedDeletingCharacter {
-            DeleteView(deleteId: $deleteId, deletingCharacter: $deletingCharacter, characterSet: characterSet)
+            VStack {
+              DeleteView(deleteId: $deleteId, deletingCharacter: $selectedDeletingCharacter, characterSet: characterSet)
+              .padding(.top, 50)
+              Spacer()
+            }
           }
         }
                 .scaleEffect(pressState ? 1.2 : 1)
