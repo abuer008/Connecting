@@ -107,8 +107,7 @@ struct mainWithFamily: View {
               //                    scaleParm: $scaleParm,
               isListState: $isListState,
               character: characterSet.characterSettings.first!,
-              deletingCharacter: $deletingCharacter,
-              showing: $showing)
+              deletingCharacter: $deletingCharacter)
       
       
       HStack {

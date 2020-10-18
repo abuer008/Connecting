@@ -56,7 +56,6 @@ struct CharacterCardView: View {
   @State private var activingMainView: Bool = false
   @State private var selectedDeletingCharacter: Bool = false
   @Binding var deletingCharacter: Bool
-  @Binding var showing:Bool
 //    @State private var characters:[Character] = mockCharacters
   
   // detail view can only showing when both return true
@@ -137,7 +136,6 @@ struct CharacterCardView: View {
 //                deletingCharacter.toggle()
                   selectedDeletingCharacter.toggle()
                   deletingCharacter.toggle()
-                showing.toggle()
               }
             }, label: {
               ZStack {
@@ -244,7 +242,7 @@ struct CharacterCardView: View {
 struct CharacterCardView_Previews: PreviewProvider {
   
   static var previews: some View {
-    CharacterCardView(isSingleCardBeenActived: .constant(false), deleteId: .constant(UUID()), showDetail: .constant(false), isListState: .constant(false), character: mockCharacters[0], deletingCharacter: .constant(false), showing: .constant(false))
+    CharacterCardView(isSingleCardBeenActived: .constant(false), deleteId: .constant(UUID()), showDetail: .constant(false), isListState: .constant(false), character: mockCharacters[0], deletingCharacter: .constant(false))
             .environmentObject(CharacterSettings())
   }
 }

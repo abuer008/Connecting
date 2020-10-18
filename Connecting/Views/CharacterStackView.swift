@@ -117,10 +117,8 @@ struct StackedSingleView: View {
             //                                scaleParm: $scaleParm,
             isListState: $isStacked,
             character: character,
-            deletingCharacter: $deletingCharacter,
-                showing: $showing
+            deletingCharacter: $deletingCharacter
         )
-      .zIndex(showing ? 100 : 0)
       
     }
 }
