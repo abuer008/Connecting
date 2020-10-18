@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1633B376EF30A2F0FDB9F033 /* ConnectivityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1633B4C8E0E26FF9EC079748 /* ConnectivityDelegate.swift */; };
+		1633B50E4527DF9F491F58FB /* TouchScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1633B10E9C796ED4983C3804 /* TouchScene.swift */; };
 		1633BA80CFAE02F9DF98933F /* SharedConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1633BC6EAD566D903F47CA34 /* SharedConnectivity.swift */; };
 		1633BE3DE9239C4304DB11D0 /* DeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1633B1A6DC7A9966DBD33A20 /* DeleteView.swift */; };
+		1633BF2347F18550E3BA3B4F /* ConnectivityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1633B4C8E0E26FF9EC079748 /* ConnectivityDelegate.swift */; };
 		38047B8A252F347B0011626A /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38047B89252F347B0011626A /* StatisticView.swift */; };
 		38047B92252F5A3F0011626A /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38047B91252F5A3F0011626A /* TitleView.swift */; };
 		38047B97252F5C4E0011626A /* GlobalStatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38047B96252F5C4E0011626A /* GlobalStatisticView.swift */; };
@@ -137,7 +140,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1633B10E9C796ED4983C3804 /* TouchScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchScene.swift; sourceTree = "<group>"; };
 		1633B1A6DC7A9966DBD33A20 /* DeleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteView.swift; sourceTree = "<group>"; };
+		1633B4C8E0E26FF9EC079748 /* ConnectivityDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectivityDelegate.swift; sourceTree = "<group>"; };
 		1633BC6EAD566D903F47CA34 /* SharedConnectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedConnectivity.swift; sourceTree = "<group>"; };
 		38047B89252F347B0011626A /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		38047B91252F5A3F0011626A /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
@@ -480,6 +485,7 @@
 				38EA94FE2509984600B56379 /* BasicScene.sks */,
 				38BD0A6F251256F0007B5F5C /* PrototypeScene.swift */,
 				38BD0A7725125764007B5F5C /* PrototypeSceneSKS.sks */,
+				1633B10E9C796ED4983C3804 /* TouchScene.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 				385A6A572515446900D15584 /* CharacterDataModel.swift */,
 				386A660B252CDA660058FEC3 /* HealthKitData.swift */,
 				1633BC6EAD566D903F47CA34 /* SharedConnectivity.swift */,
+				1633B4C8E0E26FF9EC079748 /* ConnectivityDelegate.swift */,
 			);
 			path = SharedModel;
 			sourceTree = "<group>";
@@ -701,6 +708,7 @@
 				38047B92252F5A3F0011626A /* TitleView.swift in Sources */,
 				38047B97252F5C4E0011626A /* GlobalStatisticView.swift in Sources */,
 				38047BB1252F6D510011626A /* DictationSymbolView.swift in Sources */,
+				1633BF2347F18550E3BA3B4F /* ConnectivityDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,6 +761,8 @@
 				1633BA80CFAE02F9DF98933F /* SharedConnectivity.swift in Sources */,
 				38FD314C2532C4DF00A53CDC /* PrototypeStatisticState.swift in Sources */,
 				1633BE3DE9239C4304DB11D0 /* DeleteView.swift in Sources */,
+				1633B50E4527DF9F491F58FB /* TouchScene.swift in Sources */,
+				1633B376EF30A2F0FDB9F033 /* ConnectivityDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

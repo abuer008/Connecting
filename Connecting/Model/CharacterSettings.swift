@@ -21,6 +21,7 @@ struct Settings {
 
 class CharacterSettings: ObservableObject {
     @Published var characterSettings:[Character]
+    @Published var activeCharacter:Character?
     
     init() {
         self.characterSettings = []
@@ -32,6 +33,7 @@ class CharacterSettings: ObservableObject {
 //        let newCharacter = Character(name: "Leandro", stateName: [.Idle: "I'm calm, blar blar blar...", .Active: "Working right now", .Sleepy: "em, em, em"], scene: PrototypeScene(), characterState: .Idle, colorSet: .blue, voiceStorage: [VoiceModel(isSource: true, voiceClip: 1, timeStample: Date(), voiceDuration: 12.0)])
         let newCharacter = mockCharacters[mockIndex]
         self.characterSettings.append(newCharacter)
+        HapticEffect.hapticFeedback(type: .success)
         print("now characterArray has \(self.characterSettings.count) characters")
     }
 
@@ -48,6 +50,16 @@ class CharacterSettings: ObservableObject {
             }
         }
     }
+    
+    func setActiveCharacter(id:UUID) {
+        for character in characterSettings {
+            if character.id == id {
+//                guard let activeIndex = characterSettings.firstIndex(of: character) else { return }
+                activeCharacter = character
+//                characterSettings.move(character, to: 0)
+            }
+        }
+    }
 }
 
 class UIState: ObservableObject {
@@ -55,6 +67,8 @@ class UIState: ObservableObject {
     @Published var animationState:AnimationState = .pending
     @Published var isPair:Bool = false
     @Published var isConnect:Bool = false
+    
+    @Published var isTouched:Bool = false
 
     func newActiveCharacter(_ character:Character) {
         self.activeCharacter = character

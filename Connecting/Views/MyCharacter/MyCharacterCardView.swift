@@ -18,6 +18,7 @@ struct MyCharacterCardView: View {
                 .frame(height: 303, alignment: .top)
                 .hueRotation(Angle(degrees: character.characterColor.0))
                 .saturation(character.characterColor.1)
+                    .scaleEffect(0.9)
                 
                 // posisition and size of character
                 .offset(x: 60, y: 35)

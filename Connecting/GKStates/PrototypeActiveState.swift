@@ -32,10 +32,12 @@ class PrototypeActiveState: PrototypeState {
 //        let delta2 = seconds - debuggingTime
 //        if delta2 < 10.0 {
 //            switchingStates() }
+//        switchAutoState()
         
         if delta < animaLength { return }
         
         /// switching states
+//        switchAutoState()
         switchingStates()
         
         

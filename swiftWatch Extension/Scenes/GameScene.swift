@@ -161,7 +161,7 @@ class GameScene: SKScene {
         
         let numImages = characterAtlas.textureNames.count - 1
         
-        for i in 0...numImages {
+        for i in (0...numImages) {
             let textureName = "\(i)"
             frams.append(characterAtlas.textureNamed(textureName))
         }

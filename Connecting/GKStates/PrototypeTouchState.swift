@@ -17,6 +17,7 @@ class PrototypeTouchState: PrototypeState {
         
             print("enter ... \(currentState.rawValue)")
         runInteractionState(state: .touch, node: characterNode)
+        HapticEffect.impactFeedback(style: .soft, intensity: 0.4)
     }
     
     override func update(deltaTime seconds: TimeInterval) {
@@ -47,9 +48,9 @@ class PrototypeTouchState: PrototypeState {
                 stateMachine?.enter(PrototypeSleepyState.self)
             }
         }
-        
+
         DispatchQueue.main.async {
-            
+
             self.runInteractionState(state: .touch, node: self.characterNode)
         }
         

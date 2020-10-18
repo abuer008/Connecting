@@ -10,7 +10,15 @@ import GameplayKit
 
 extension PrototypeState {
     
-    func switchingStates() {
+  func handleTouch(_ connection: SharedConnectivity, message: Double) {
+    if message == 1.1 {
+      stateMachine?.enter(PrototypeTouchState.self)
+    }
+    
+  }
+  
+  
+  func switchingStates() {
         let isPair = UserDefaults.standard.bool(forKey: "IsPair")
         let isConnect = UserDefaults.standard.bool(forKey: "IsConnect")
 
@@ -21,13 +29,23 @@ extension PrototypeState {
         } else if !isPair && !isConnect {
             currentState = .pending
         } else {
-            currentState = switchAutoState()
+            switchAutoState()
         }
     }
 
-    func switchAutoState() -> AnimationState {
-        return .idle
+    func switchAutoState() {
+        currentState = .idle
     }
+  
+  func switchTouchState() {
+    let isTouched = UserDefaults.standard.bool(forKey: "IsTouch")
+    
+    if isTouched {
+      stateMachine?.enter(PrototypeTouchState.self)
+    } else {
+      return
+    }
+  }
 
     func combineTextures(arrayTextures textures: [[SKTexture]]) -> [SKTexture] {
         
@@ -93,9 +111,13 @@ extension PrototypeState {
             stateIdentifier = "Pair"
             requestedTexturesArray = fetchTexturesFromAtlas(stateIdentifier, index: 2)
             
-        default: // touch state have 3 clips
+        case .touch: // touch state have 3 clips
             stateIdentifier = "Touch"
             requestedTexturesArray = fetchTexturesFromAtlas(stateIdentifier, index: 3)
+            
+        default:
+            stateIdentifier = "Idle"
+            requestedTexturesArray = fetchTexturesFromAtlas(stateIdentifier, index: 1)
             
         }
         

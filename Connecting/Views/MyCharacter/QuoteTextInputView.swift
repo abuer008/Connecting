@@ -17,14 +17,16 @@ struct QuoteTextInputView: View {
     @State private var blueColor:Color = Color("blueSleepyTop")
     
     var body: some View {
-        VStack {
-            TextFieldView(saySomethingString: $generalString, backgroundColor: $orangeColor)
-                .padding(.top, 30)
-            TextFieldView(saySomethingString: $busyString, backgroundColor: $purpleColor)
-            TextFieldView(saySomethingString: $playfulString, backgroundColor: $blueColor)
-            Spacer()
+        ZStack {
+            Image("quotesWritingView")
+            VStack {
+                TextFieldView(saySomethingString: $generalString, backgroundColor: $orangeColor)
+                        .padding(.top, 60)
+                TextFieldView(saySomethingString: $busyString, backgroundColor: $purpleColor)
+                TextFieldView(saySomethingString: $playfulString, backgroundColor: $blueColor)
+                Spacer()
+            }
         }
-
     }
 }
 
@@ -43,7 +45,7 @@ struct TextFieldView: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text("Say somthing ")
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.white)
                     Text(saySomethingString)
                         .font(.headline)
                         .bold()
@@ -51,16 +53,16 @@ struct TextFieldView: View {
                 .padding(.horizontal, 80)
                 Spacer()
             }
-            TextField(/*@START_MENU_TOKEN@*/"Placeholder"/*@END_MENU_TOKEN@*/, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            TextField("Placeholder", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
                 .font(.title3)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.leading)
                 .padding()
                 
                 .frame(width: 250, height: 55, alignment: .center)
-                .background(backgroundColor)
+                .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
         }
-        .padding(.vertical, 25)
+        .padding(.vertical, 15)
     }
 }

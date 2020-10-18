@@ -51,6 +51,9 @@ struct CharacterCardView: View {
   /// isConnected
   var character: Character
   
+  // Scene properties
+  var touchScene: SKScene = TouchScene()
+  
   // private Properties
   
   @State private var activingMainView: Bool = false
@@ -79,10 +82,13 @@ struct CharacterCardView: View {
               }
             })
             .onEnded { (_) in
-              // set the new active card based on index
-              HapticEffect.hapticFeedback(type: .success)
+//              HapticEffect.hapticFeedback(type: .success)
 //                HapticEffect.impactFeedback(style: .soft, intensity: 3)
-              uiState.newActiveCharacter(character)
+//              uiState.newActiveCharacter(character)
+              withAnimation(.spring()) {
+                characterSet.setActiveCharacter(id: character.id)
+                HapticEffect.impactFeedback(style: .heavy, intensity: 0.5)
+              }
             }
     
     // SpriteKit Scene View
@@ -91,7 +97,14 @@ struct CharacterCardView: View {
         ZStack {
           
           /// 1. `Sprite view` for content display
+//          ZStack {
+//            if uiState.isTouched {
+//              SpriteView(scene: touchScene, options: .allowsTransparency)
+//            } else {
           SpriteView(scene: character.scene, options: .allowsTransparency)
+                  //            }
+                  
+                  //          }
                   
                   // Character color setting
                   .hueRotation(Angle(degrees: character.characterColor.0))
@@ -120,7 +133,6 @@ struct CharacterCardView: View {
                   
                   // Gestures event
                   .gesture(pressGesture)
-          
           // debugging
           
           /// 2. `delete button`, only avariable in list state
@@ -160,7 +172,7 @@ struct CharacterCardView: View {
           }
           
           /// 3. mark for `Prime character`
-          if !isSingleCardBeenActived && !isListState && uiState.activeCharacter.id == character.id && !selectedDeletingCharacter {
+          if !isSingleCardBeenActived && !isListState && characterSet.activeCharacter?.id == character.id && !selectedDeletingCharacter {
             VStack {
               HStack {
                 Image(systemName: "eye.fill")
@@ -214,7 +226,7 @@ struct CharacterCardView: View {
           if selectedDeletingCharacter {
             VStack {
               DeleteView(deleteId: $deleteId, deletingCharacter: $selectedDeletingCharacter, characterSet: characterSet)
-              .padding(.top, 50)
+                      .padding(.top, 50)
               Spacer()
             }
           }

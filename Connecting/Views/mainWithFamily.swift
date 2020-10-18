@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WatchConnectivity
 
 struct mainWithFamily: View {
   @Namespace var namespace
@@ -106,9 +107,30 @@ struct mainWithFamily: View {
               showDetail: $showDetail,
               //                    scaleParm: $scaleParm,
               isListState: $isListState,
-              character: characterSet.characterSettings.first!,
+              character: characterSet.activeCharacter ?? characterSet.characterSettings.first!,
               deletingCharacter: $deletingCharacter)
-      
+              .gesture(DragGesture()
+                      .onChanged { value in
+//        print("enter touch state")
+                        withAnimation(.spring()) {
+                            UserDefaults.standard.setValue(true, forKey: "IsTouch")
+                            uiState.isTouched = true
+                        }
+//                        HapticEffect.impactFeedback(style: .soft, intensity: 0.5)
+                      }
+                      .onEnded { value in
+                        print("leave touch state")
+                        let touchData = TouchModel(duration: 1.0, timeStampe: value.time)
+                        WCSession.default.sendMessage(touchData.message) { dictionary in
+                          print("\(#function): \(dictionary)")
+                        }
+                        withAnimation(.spring()) {
+                          UserDefaults.standard.setValue(false, forKey: "IsTouch")
+                          uiState.isTouched = false
+                        }
+                      })
+      // debuging
+//      Text("\(uiState.isTouched ? "been Touched": "not Touching")")
       
       HStack {
         VStack {

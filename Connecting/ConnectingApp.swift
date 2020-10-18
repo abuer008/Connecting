@@ -7,10 +7,13 @@
 
 import SwiftUI
 import CoreData
+import WatchConnectivity
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         _ = SharedConnectivity.shared
+        
+        
         #if DEBUG
         var injectionBundlePath = "/Applications/InjectionIII.app/Contents/Resources"
         #if targetEnvironment(macCatalyst)

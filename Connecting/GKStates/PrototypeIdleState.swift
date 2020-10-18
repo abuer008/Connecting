@@ -25,7 +25,7 @@ import GameplayKit
 fileprivate let characterAnimationKey = "character Animation"
 
 // MARK: The Base State
-class PrototypeState: GKState {
+class PrototypeState: GKState, TouchHandleDelegate {
     unowned var characterNode: SKNode
     
     var currentState:AnimationState = .pending
@@ -42,8 +42,8 @@ class PrototypeState: GKState {
     
     init(characterNode:SKNode) {
         self.characterNode = characterNode
-        
         super.init()
+        SharedConnectivity.shared.delegate = self
     }
 }
 
@@ -67,11 +67,14 @@ extension PrototypeIdleState {
         
         let delta = seconds - elapsedTime
         
+        switchTouchState()
+        
         
         if delta < animaLength { return }
         
         /// switching states
         switchingStates()
+        
         
         if currentState != .idle {
             switch currentState {

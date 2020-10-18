@@ -9,7 +9,8 @@ import SpriteKit
 import SwiftUI
 import GameplayKit
 
-class PrototypeScene:SKScene {
+class PrototypeScene:SKScene, TouchHandleDelegate {
+    
     var characterNode:SKNode?
     var stateMachine:GKStateMachine!
 //    var bScene:SKScene?
@@ -60,6 +61,10 @@ class PrototypeScene:SKScene {
         stateMachine.update(deltaTime: currentTime)
         
 //        elapsedTime = currentTime
+    }
+    
+    func handleTouch(_ connection: SharedConnectivity, message: Double) {
+        print("transfer data.")
     }
 }
 
