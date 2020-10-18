@@ -10,13 +10,13 @@ import SpriteKit
 
 // MARK: CharacterModel + DataType
 
-enum CharacterState: String {
+enum CharacterState: String, Hashable {
     case Idle
     case Active
     case Sleepy
 }
 
-enum ColorSet {
+enum ColorSet: Hashable {
     case orange
     case purple
     case blue
@@ -24,10 +24,10 @@ enum ColorSet {
 
 // MARK: Character Data Model
 
-struct Character: Identifiable, Equatable {
-    static func == (lhs: Character, rhs: Character) -> Bool {
-        return lhs.id == rhs.id
-    }
+struct Character: Identifiable, Hashable {
+//    static func == (lhs: Character, rhs: Character) -> Bool {
+//        return lhs.id == rhs.id
+//    }
     // for identity the individual character data
     var id = UUID()
     // the name of character
@@ -60,7 +60,7 @@ struct Character: Identifiable, Equatable {
 
 // MARK: Voice Data Model
 
-struct VoiceModel: Identifiable {
+struct VoiceModel: Identifiable, Hashable {
     var id = UUID()
     
     // receiving data or sending data

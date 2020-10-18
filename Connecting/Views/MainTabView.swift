@@ -114,7 +114,7 @@ struct MainTabView: View {
                                         self.isPair = true
                                         self.isConnect = false
                                     }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                         uiState.pairStateButton(requestedState: .success)
                                         withAnimation(.easeInOut(duration: 0.5)) {
                                             self.isPair = false

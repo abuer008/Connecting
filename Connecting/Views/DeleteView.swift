@@ -8,17 +8,20 @@ struct DeleteView: View {
     @Binding var deleteId: UUID
     @Binding var deletingCharacter: Bool
 
-    @ObservedObject var characterSet: CharacterSettings
+    @StateObject var characterSet = CharacterSettings()
 
     var body: some View {
         HStack {
 //            Text("\(characterSet.characterSettings.count)")
-            Button(action: {}, label: {
+            Button(action: {
+                self.deletingCharacter = false
+            }, label: {
                 Text("Cancel")
                     .frame(width: 100, height: 45, alignment: .center)
                     .background(Color.secondary)
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             })
+            
             Button(action: {
                 guard characterSet.characterSettings.count > 1 else {
                     return
