@@ -26,7 +26,7 @@ struct DeleteView: View {
               .font(.headline)
               .foregroundColor(.white)
       .multilineTextAlignment(.center)
-      .frame(width: 170)
+      .frame(width: 160)
       
       HStack {
 //            Text("\(characterSet.characterSettings.count)")

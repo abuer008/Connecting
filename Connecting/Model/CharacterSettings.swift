@@ -27,8 +27,10 @@ class CharacterSettings: ObservableObject {
     }
     
     func addCharacter() {
-        let newCharacter = Character(name: "Leandro", stateName: [.Idle: "I'm calm, blar blar blar...", .Active: "Working right now", .Sleepy: "em, em, em"], scene: PrototypeScene(), characterState: .Idle, colorSet: .blue, voiceStorage: [VoiceModel(isSource: true, voiceClip: 1, timeStample: Date(), voiceDuration: 12.0)], show: false)
-        
+      print("\(self.characterSettings.count)")
+        let mockIndex = self.characterSettings.count
+//        let newCharacter = Character(name: "Leandro", stateName: [.Idle: "I'm calm, blar blar blar...", .Active: "Working right now", .Sleepy: "em, em, em"], scene: PrototypeScene(), characterState: .Idle, colorSet: .blue, voiceStorage: [VoiceModel(isSource: true, voiceClip: 1, timeStample: Date(), voiceDuration: 12.0)])
+        let newCharacter = mockCharacters[mockIndex]
         self.characterSettings.append(newCharacter)
         print("now characterArray has \(self.characterSettings.count) characters")
     }
